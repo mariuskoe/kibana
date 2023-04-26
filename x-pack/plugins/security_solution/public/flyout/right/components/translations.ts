@@ -118,6 +118,11 @@ export const INSIGHTS_TITLE = i18n.translate(
   { defaultMessage: 'Insights' }
 );
 
+export const PREVALENCE_TITLE = i18n.translate(
+  'xpack.securitySolution.flyout.documentDetails.prevalenceTitle',
+  { defaultMessage: 'Prevalence' }
+);
+
 export const TECHNICAL_PREVIEW_TITLE = i18n.translate(
   'xpack.securitySolution.flyout.documentDetails.technicalPreviewTitle',
   { defaultMessage: 'Technical Preview' }
@@ -170,6 +175,20 @@ export const THREAT_ENRICHMENTS = i18n.translate(
   'xpack.securitySolution.flyout.documentDetails.overviewTab.threatIntelligence.threatEnrichments',
   {
     defaultMessage: `fields enriched with threat intelligence`,
+  }
+);
+
+export const PREVALENCE_TEXT = i18n.translate(
+  'xpack.securitySolution.flyout.documentDetails.overviewTab.prevalenceText',
+  {
+    defaultMessage: 'fields of prevalence',
+  }
+);
+
+export const PREVALENCE_ROW_UNCOMMON = i18n.translate(
+  'xpack.securitySolution.flyout.documentDetails.overviewTab.prevalenceRowText',
+  {
+    defaultMessage: 'is uncommon',
   }
 );
 

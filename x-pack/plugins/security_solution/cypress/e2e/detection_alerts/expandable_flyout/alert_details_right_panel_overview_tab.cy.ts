@@ -32,7 +32,9 @@ import {
   DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_THREAT_INTELLIGENCE_HEADER,
   DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_THREAT_INTELLIGENCE_CONTENT,
   DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_THREAT_INTELLIGENCE_VALUES,
-  DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_THREAT_INTELLIGENCE_VIEW_ALL_BUTTON,
+  DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_PREVALENCE_HEADER,
+  DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_PREVALENCE_CONTENT,
+  DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_PREVALENCE_VALUES,
 } from '../../../screens/document_expandable_flyout';
 import {
   expandFirstAlertExpandableFlyout,
@@ -41,6 +43,8 @@ import {
   toggleOverviewTabInvestigationSection,
   toggleOverviewTabInsightsSection,
   toggleOverviewTabVisualizationsSection,
+  clickThreatIntelligenceViewAllButton,
+  clickPrevalenceViewAllButton,
 } from '../../../tasks/document_expandable_flyout';
 import { cleanKibana } from '../../../tasks/common';
 import { login, visit } from '../../../tasks/login';
@@ -211,9 +215,30 @@ describe.skip(
       // TODO work on getting proper IoC data to make the threat intelligence section work here
       //  and improve when we can navigate Threat Intelligence to sub tab directly
       it.skip('should navigate to left panel, entities tab when view all fields of threat intelligence is clicked', () => {
-        cy.get(DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_THREAT_INTELLIGENCE_VIEW_ALL_BUTTON)
+        clickThreatIntelligenceViewAllButton();
+        cy.get(DOCUMENT_DETAILS_FLYOUT_INSIGHTS_TAB_ENTITIES_CONTENT).should('be.visible');
+      });
+
+      // TODO work on getting proper data to make the prevalence section work here
+      //  we need to generate enough data to have at least one field with prevalence
+      it.skip('should display prevalence section', () => {
+        cy.get(DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_PREVALENCE_HEADER)
+          .scrollIntoView()
           .should('be.visible')
-          .click();
+          .and('have.text', 'Prevalence');
+        cy.get(DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_PREVALENCE_CONTENT)
+          .should('be.visible')
+          .within(() => {
+            cy.get(DOCUMENT_DETAILS_FLYOUT_OVERVIEW_TAB_INSIGHTS_PREVALENCE_VALUES)
+              .should('be.visible')
+              .and('have.text', 'is uncommon');
+          });
+      });
+
+      // TODO work on getting proper data to make the prevalence section work here
+      //  we need to generate enough data to have at least one field with prevalence
+      it.skip('should navigate to left panel, entities tab when view all fields of threat intelligence is clicked', () => {
+        clickPrevalenceViewAllButton();
         cy.get(DOCUMENT_DETAILS_FLYOUT_INSIGHTS_TAB_ENTITIES_CONTENT).should('be.visible');
       });
     });
